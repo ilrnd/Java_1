@@ -42,8 +42,8 @@ import java.util.Scanner;
          * Инициализация игрового поля
          */
         static void initialize(){
-            fieldSizeY = 3;
-            fieldSizeX = 3;
+            fieldSizeY = 4;
+            fieldSizeX = 4;
 
             field = new char[fieldSizeY][fieldSizeX];
             for (int y = 0; y < fieldSizeY; y++){
@@ -92,7 +92,7 @@ import java.util.Scanner;
             while (!isCellValid(x, y) || !isCellEmpty(x, y));
 
             field[y][x] = DOT_HUMAN;
-            System.out.println(check1(x, y, DOT_HUMAN, WIN_COUNT));
+            System.out.println(check2(x, y, DOT_HUMAN, WIN_COUNT));
         }
 
         /**
@@ -187,8 +187,21 @@ import java.util.Scanner;
         }
 
         static boolean check1(int x, int y, char dot, int winCount){
+            int count = 0;
+            for(int i = 0; i < fieldSizeX; i++){
+                if(field[y][i] == dot) {
+                    count ++;
+                } else {
+                    break;
+                }
+            }
+            if (count == winCount){
+                return true;
+            }
+            return false;
+        }
 
-            System.out.println("I m WORK!!!");
+        static boolean check2(int x, int y, char dot, int winCount){
             int count = 0;
             for(int i = 0; i < fieldSizeY; i++){
                 if(field[i][x] == dot) {
@@ -197,20 +210,24 @@ import java.util.Scanner;
                     break;
                 }
             }
-            System.out.println(count);
-            System.out.println(field[2][1]);
-
             if (count == winCount){
                 return true;
             }
             return false;
         }
 
-        static boolean check2(int x, int y, char dot, int winCount){
-            return false;
-        }
-
         static boolean check3(int x, int y, char dot, int winCount){
+            int count = 0;
+            for(int i = 0; i < fieldSizeY; i++){
+                if(field[i][x] == dot) {
+                    count ++;
+                } else {
+                    break;
+                }
+            }
+            if (count == winCount){
+                return true;
+            }
             return false;
         }
 
